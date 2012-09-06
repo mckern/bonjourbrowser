@@ -1,0 +1,305 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B04EC94315E9AB07000D4A91 /* Bonjour.icns in Resources */ = {isa = PBXBuildFile; fileRef = B04EC94215E9AB07000D4A91 /* Bonjour.icns */; };
+		B0BAF3C115E9A6EE00345CEB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0BAF3C015E9A6EE00345CEB /* Cocoa.framework */; };
+		B0BAF3CB15E9A6EE00345CEB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0BAF3C915E9A6EE00345CEB /* InfoPlist.strings */; };
+		B0BAF3CD15E9A6EE00345CEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BAF3CC15E9A6EE00345CEB /* main.m */; };
+		B0BAF3D415E9A6EE00345CEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BAF3D315E9A6EE00345CEB /* AppDelegate.m */; };
+		B0BAF3D715E9A6EE00345CEB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0BAF3D515E9A6EE00345CEB /* MainMenu.xib */; };
+		B0C58B5C15F84DC60015D4C9 /* masterBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C58B5B15F84DC60015D4C9 /* masterBrowser.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B0409D5F15E9CCF20045844E /* NSObject_ServiceNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObject_ServiceNames.h; sourceTree = "<group>"; };
+		B04EC94215E9AB07000D4A91 /* Bonjour.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Bonjour.icns; sourceTree = "<group>"; };
+		B0BAF3BC15E9A6EE00345CEB /* Bonjour Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bonjour Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0BAF3C015E9A6EE00345CEB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B0BAF3C315E9A6EE00345CEB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		B0BAF3C415E9A6EE00345CEB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B0BAF3C515E9A6EE00345CEB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B0BAF3C815E9A6EE00345CEB /* Bonjour Browser-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bonjour Browser-Info.plist"; sourceTree = "<group>"; };
+		B0BAF3CA15E9A6EE00345CEB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B0BAF3CC15E9A6EE00345CEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B0BAF3CE15E9A6EE00345CEB /* Bonjour Browser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bonjour Browser-Prefix.pch"; sourceTree = "<group>"; };
+		B0BAF3D215E9A6EE00345CEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B0BAF3D315E9A6EE00345CEB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B0BAF3D615E9A6EE00345CEB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B0C58B5A15F84DC60015D4C9 /* masterBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = masterBrowser.h; sourceTree = "<group>"; };
+		B0C58B5B15F84DC60015D4C9 /* masterBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = masterBrowser.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B0BAF3B915E9A6EE00345CEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0BAF3C115E9A6EE00345CEB /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B0BAF3B115E9A6ED00345CEB = {
+			isa = PBXGroup;
+			children = (
+				B04EC94215E9AB07000D4A91 /* Bonjour.icns */,
+				B0BAF3C615E9A6EE00345CEB /* Bonjour Browser */,
+				B0BAF3BF15E9A6EE00345CEB /* Frameworks */,
+				B0BAF3BD15E9A6EE00345CEB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B0BAF3BD15E9A6EE00345CEB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B0BAF3BC15E9A6EE00345CEB /* Bonjour Browser.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B0BAF3BF15E9A6EE00345CEB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B0BAF3C015E9A6EE00345CEB /* Cocoa.framework */,
+				B0BAF3C215E9A6EE00345CEB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B0BAF3C215E9A6EE00345CEB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B0BAF3C315E9A6EE00345CEB /* AppKit.framework */,
+				B0BAF3C415E9A6EE00345CEB /* CoreData.framework */,
+				B0BAF3C515E9A6EE00345CEB /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		B0BAF3C615E9A6EE00345CEB /* Bonjour Browser */ = {
+			isa = PBXGroup;
+			children = (
+				B0BAF3D215E9A6EE00345CEB /* AppDelegate.h */,
+				B0C58B5A15F84DC60015D4C9 /* masterBrowser.h */,
+				B0C58B5B15F84DC60015D4C9 /* masterBrowser.m */,
+				B0BAF3D315E9A6EE00345CEB /* AppDelegate.m */,
+				B0BAF3D515E9A6EE00345CEB /* MainMenu.xib */,
+				B0409D5F15E9CCF20045844E /* NSObject_ServiceNames.h */,
+				B0BAF3C715E9A6EE00345CEB /* Supporting Files */,
+			);
+			path = "Bonjour Browser";
+			sourceTree = "<group>";
+		};
+		B0BAF3C715E9A6EE00345CEB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B0BAF3C815E9A6EE00345CEB /* Bonjour Browser-Info.plist */,
+				B0BAF3C915E9A6EE00345CEB /* InfoPlist.strings */,
+				B0BAF3CC15E9A6EE00345CEB /* main.m */,
+				B0BAF3CE15E9A6EE00345CEB /* Bonjour Browser-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B0BAF3BB15E9A6EE00345CEB /* Bonjour Browser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0BAF3DA15E9A6EE00345CEB /* Build configuration list for PBXNativeTarget "Bonjour Browser" */;
+			buildPhases = (
+				B0BAF3B815E9A6EE00345CEB /* Sources */,
+				B0BAF3B915E9A6EE00345CEB /* Frameworks */,
+				B0BAF3BA15E9A6EE00345CEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Bonjour Browser";
+			productName = "Bonjour Browser";
+			productReference = B0BAF3BC15E9A6EE00345CEB /* Bonjour Browser.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B0BAF3B315E9A6ED00345CEB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = Sourceforge;
+			};
+			buildConfigurationList = B0BAF3B615E9A6EE00345CEB /* Build configuration list for PBXProject "Bonjour Browser" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B0BAF3B115E9A6ED00345CEB;
+			productRefGroup = B0BAF3BD15E9A6EE00345CEB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B0BAF3BB15E9A6EE00345CEB /* Bonjour Browser */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B0BAF3BA15E9A6EE00345CEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0BAF3CB15E9A6EE00345CEB /* InfoPlist.strings in Resources */,
+				B0BAF3D715E9A6EE00345CEB /* MainMenu.xib in Resources */,
+				B04EC94315E9AB07000D4A91 /* Bonjour.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B0BAF3B815E9A6EE00345CEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0BAF3CD15E9A6EE00345CEB /* main.m in Sources */,
+				B0BAF3D415E9A6EE00345CEB /* AppDelegate.m in Sources */,
+				B0C58B5C15F84DC60015D4C9 /* masterBrowser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B0BAF3C915E9A6EE00345CEB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B0BAF3CA15E9A6EE00345CEB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B0BAF3D515E9A6EE00345CEB /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B0BAF3D615E9A6EE00345CEB /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B0BAF3D815E9A6EE00345CEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_MARKETING_VERSION = 1.0;
+				CURRENT_PROJECT_VERSION = 12;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B0BAF3D915E9A6EE00345CEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_MARKETING_VERSION = 1.0;
+				CURRENT_PROJECT_VERSION = 12;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B0BAF3DB15E9A6EE00345CEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Bonjour Browser/Bonjour Browser-Prefix.pch";
+				INFOPLIST_FILE = "Bonjour Browser/Bonjour Browser-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B0BAF3DC15E9A6EE00345CEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Bonjour Browser/Bonjour Browser-Prefix.pch";
+				INFOPLIST_FILE = "Bonjour Browser/Bonjour Browser-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B0BAF3B615E9A6EE00345CEB /* Build configuration list for PBXProject "Bonjour Browser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0BAF3D815E9A6EE00345CEB /* Debug */,
+				B0BAF3D915E9A6EE00345CEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0BAF3DA15E9A6EE00345CEB /* Build configuration list for PBXNativeTarget "Bonjour Browser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0BAF3DB15E9A6EE00345CEB /* Debug */,
+				B0BAF3DC15E9A6EE00345CEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B0BAF3B315E9A6ED00345CEB /* Project object */;
+}
