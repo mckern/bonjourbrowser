@@ -7,17 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B04EC94315E9AB07000D4A91 /* Bonjour.icns in Resources */ = {isa = PBXBuildFile; fileRef = B04EC94215E9AB07000D4A91 /* Bonjour.icns */; };
 		B0BAF3C115E9A6EE00345CEB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0BAF3C015E9A6EE00345CEB /* Cocoa.framework */; };
 		B0BAF3CD15E9A6EE00345CEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BAF3CC15E9A6EE00345CEB /* main.m */; };
 		B0BAF3D415E9A6EE00345CEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BAF3D315E9A6EE00345CEB /* AppDelegate.m */; };
 		B0BAF3D715E9A6EE00345CEB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0BAF3D515E9A6EE00345CEB /* MainMenu.xib */; };
 		B0C58B5C15F84DC60015D4C9 /* masterBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C58B5B15F84DC60015D4C9 /* masterBrowser.m */; };
+		B0E49CB816C37A2100DD7263 /* Bonjour.icns in Resources */ = {isa = PBXBuildFile; fileRef = B0E49CB716C37A2000DD7263 /* Bonjour.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B0409D5F15E9CCF20045844E /* NSObject_ServiceNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObject_ServiceNames.h; sourceTree = "<group>"; };
-		B04EC94215E9AB07000D4A91 /* Bonjour.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Bonjour.icns; sourceTree = "<group>"; };
 		B0BAF3BC15E9A6EE00345CEB /* Bonjour Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bonjour Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0BAF3C015E9A6EE00345CEB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B0BAF3C315E9A6EE00345CEB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -31,6 +30,7 @@
 		B0BAF3D615E9A6EE00345CEB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		B0C58B5A15F84DC60015D4C9 /* masterBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = masterBrowser.h; sourceTree = "<group>"; };
 		B0C58B5B15F84DC60015D4C9 /* masterBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = masterBrowser.m; sourceTree = "<group>"; };
+		B0E49CB716C37A2000DD7263 /* Bonjour.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Bonjour.icns; path = ../../../../../System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/Bonjour.icns; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +48,6 @@
 		B0BAF3B115E9A6ED00345CEB = {
 			isa = PBXGroup;
 			children = (
-				B04EC94215E9AB07000D4A91 /* Bonjour.icns */,
 				B0BAF3C615E9A6EE00345CEB /* Bonjour Browser */,
 				B0BAF3BF15E9A6EE00345CEB /* Frameworks */,
 				B0BAF3BD15E9A6EE00345CEB /* Products */,
@@ -100,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				B0BAF3C815E9A6EE00345CEB /* Bonjour Browser-Info.plist */,
+				B0E49CB716C37A2000DD7263 /* Bonjour.icns */,
 				B0BAF3CC15E9A6EE00345CEB /* main.m */,
 				B0BAF3CE15E9A6EE00345CEB /* Bonjour Browser-Prefix.pch */,
 			);
@@ -158,7 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0BAF3D715E9A6EE00345CEB /* MainMenu.xib in Resources */,
-				B04EC94315E9AB07000D4A91 /* Bonjour.icns in Resources */,
+				B0E49CB816C37A2100DD7263 /* Bonjour.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
