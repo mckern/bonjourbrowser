@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B04EC94315E9AB07000D4A91 /* Bonjour.icns in Resources */ = {isa = PBXBuildFile; fileRef = B04EC94215E9AB07000D4A91 /* Bonjour.icns */; };
 		B0BAF3C115E9A6EE00345CEB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0BAF3C015E9A6EE00345CEB /* Cocoa.framework */; };
-		B0BAF3CB15E9A6EE00345CEB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0BAF3C915E9A6EE00345CEB /* InfoPlist.strings */; };
 		B0BAF3CD15E9A6EE00345CEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BAF3CC15E9A6EE00345CEB /* main.m */; };
 		B0BAF3D415E9A6EE00345CEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BAF3D315E9A6EE00345CEB /* AppDelegate.m */; };
 		B0BAF3D715E9A6EE00345CEB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0BAF3D515E9A6EE00345CEB /* MainMenu.xib */; };
@@ -25,7 +24,6 @@
 		B0BAF3C415E9A6EE00345CEB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B0BAF3C515E9A6EE00345CEB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B0BAF3C815E9A6EE00345CEB /* Bonjour Browser-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bonjour Browser-Info.plist"; sourceTree = "<group>"; };
-		B0BAF3CA15E9A6EE00345CEB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B0BAF3CC15E9A6EE00345CEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0BAF3CE15E9A6EE00345CEB /* Bonjour Browser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bonjour Browser-Prefix.pch"; sourceTree = "<group>"; };
 		B0BAF3D215E9A6EE00345CEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -102,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				B0BAF3C815E9A6EE00345CEB /* Bonjour Browser-Info.plist */,
-				B0BAF3C915E9A6EE00345CEB /* InfoPlist.strings */,
 				B0BAF3CC15E9A6EE00345CEB /* main.m */,
 				B0BAF3CE15E9A6EE00345CEB /* Bonjour Browser-Prefix.pch */,
 			);
@@ -160,7 +157,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0BAF3CB15E9A6EE00345CEB /* InfoPlist.strings in Resources */,
 				B0BAF3D715E9A6EE00345CEB /* MainMenu.xib in Resources */,
 				B04EC94315E9AB07000D4A91 /* Bonjour.icns in Resources */,
 			);
@@ -182,14 +178,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B0BAF3C915E9A6EE00345CEB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B0BAF3CA15E9A6EE00345CEB /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		B0BAF3D515E9A6EE00345CEB /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
