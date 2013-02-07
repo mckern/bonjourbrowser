@@ -23,10 +23,11 @@
     [defaults addObserver:self forKeyPath:@"tabIndex" options:0 context:nil];
     [defaults addObserver:self forKeyPath:@"resolveNames" options:0 context:nil];
 }
--(void) applicationDidFinishLaunching:(NSNotification *)aNotification{
+-(void)applicationDidFinishLaunching:(NSNotification *)aNotification{
     // Insert code here to initialize your application
+    assignWithNotice(self, master, [masterBrowser create])
 }
--(BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender{
+-(BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender{
     return true;
 }
 -(void) applicationWillTerminate:(NSNotification *)notification{
