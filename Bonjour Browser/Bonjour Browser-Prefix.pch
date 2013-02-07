@@ -5,3 +5,26 @@
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
 #endif
+#define assignWithNotice(x,y,z) [x willChangeValueForKey:@""#y];y=z;[x didChangeValueForKey:@""#y];
+#define muteWithNotice(x,y,z) [x willChangeValueForKey:@""#y];z;[x didChangeValueForKey:@""#y];
+NS_INLINE void ModalNSNetError(NSDictionary *error){
+    if(error == nil) return;
+    NSString *domain = [error objectForKey:NSNetServicesErrorDomain];
+    long code = [[error objectForKey:NSNetServicesErrorCode] longValue];
+    NSString *string;
+    switch (code) {
+        case NSNetServicesUnknownError: string = @"Unknown"; break;
+        case NSNetServicesCollisionError: string = @"Collision"; break;
+        case NSNetServicesNotFoundError: string = @"Not Found"; break;
+        case NSNetServicesActivityInProgress: string = @"Activity In Progress"; break;
+        case NSNetServicesBadArgumentError: string = @"Bad Argument"; break;
+        case NSNetServicesCancelledError: string = @"Cancelled"; break;
+        case NSNetServicesInvalidError: string = @"Invalid"; break;
+        case NSNetServicesTimeoutError: string = @"Timeout"; break;
+        default: string = @""; break;
+    }
+    NSRunCriticalAlertPanel(@"NSNetServices Error", @"Domain \"%@\" error (%ld): %@", nil, nil, nil, domain, code, string);
+}
+NS_INLINE NSString* NSStringForData(NSData *data, NSStringEncoding encoding) {
+    return [[NSString alloc] initWithBytes:data.bytes length:data.length encoding:encoding];
+}
