@@ -13,7 +13,6 @@
 @property (assign) IBOutlet NSBrowser *browser;
 
 @property masterBrowser *master;
-@property NSDictionary *txtrecords;
 
--(IBAction)browserChoose:(id)sender;
+-(IBAction)choose:(id)sender;
 @end

@@ -6,33 +6,33 @@
 //  Licensed under GPLv3, full text at http://www.gnu.org/licenses/gpl-3.0.txt
 //
 
-@interface masterBrowser : NSObject <NSNetServiceBrowserDelegate>
-@property NSMutableDictionary *children;
+@interface mdnsBrowser : NSObject <NSNetServiceBrowserDelegate>
+@property NSMutableArray *children;
 @property NSNetServiceBrowser *browser;
+@property bool running;
+@property (nonatomic) NSDictionary *txtrecord;
+@property (nonatomic) NSString *name;
+@property (nonatomic) bool isLeaf;
+-(void)halt;
+-(void)fetch;
+@end
+
+@interface masterBrowser : mdnsBrowser
 +(masterBrowser *)create;
--(void) terminate;
--(void) netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindDomain:(NSString *)domainString moreComing:(BOOL)moreComing;
--(void) netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveDomain:(NSString *)domainString moreComing:(BOOL)moreComing;
--(void) netServiceBrowserWillSearch:(NSNetServiceBrowser *)aNetServiceBrowser;
--(void) netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)aNetServiceBrowser;
--(void) netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didNotSearch:(NSDictionary *)errorDict;
 @end
 
 @interface domainBrowser : masterBrowser
-+(domainBrowser *)create:(NSNetServiceBrowser *)browser withDomain:(NSString *)domain;
--(void) netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindService:(NSNetService *)aNetService moreComing:(BOOL)moreComing;
--(void) netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveService:(NSNetService *)aNetService moreComing:(BOOL)moreComing;
+@property NSString *domain;
++(domainBrowser *)create:(NSString *)domain;
 @end
 
 @interface typeBrowser : domainBrowser
+@property NSString *type;
 @property NSNetService *service;
-+(typeBrowser *)create:(NSNetServiceBrowser *)browser withService:(NSNetService *)service;
++(typeBrowser *)create:(NSNetService *)service;
 @end
 
 @interface serviceBrowser : typeBrowser <NSNetServiceDelegate>
 @property bool resolved;
-+(serviceBrowser *)create:(NSNetServiceBrowser *)browser withService:(NSNetService *)service;
--(void) netServiceDidResolveAddress:(NSNetService *)sender;
--(void) netService:(NSNetService *)sender didNotResolve:(NSDictionary *)errorDict;
--(void) terminate;
++(serviceBrowser *)create:(NSNetService *)service;
 @end

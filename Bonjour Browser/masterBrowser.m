@@ -8,102 +8,175 @@
 
 #import "masterBrowser.h"
 #import "AppDelegate.h"
+#import "NSObject_ServiceNames.h"
 
-@implementation masterBrowser
+@implementation mdnsBrowser
 @synthesize children;
+@synthesize running;
 @synthesize browser;
-+(masterBrowser *) create{
-    masterBrowser *temp = [masterBrowser new];
-    temp.children = [NSMutableDictionary dictionary];
-    temp.browser = [NSNetServiceBrowser new];
-    [temp.browser setDelegate:temp];
-    [temp.browser searchForBrowsableDomains];
-    return temp;
+
++(void)progress:(bool)running{
+    if (running)
+        [[[NSApp delegate] progress] startAnimation:self];
+    else
+        [[[NSApp delegate] progress] stopAnimation:self];
 }
--(void) terminate{
-    if(children!=nil) for(NSString *browse in children) [(masterBrowser *)children[browse] terminate];
+
+-(id)init{
+    self = [super init];
+    if (self) {
+        browser = [NSNetServiceBrowser new];
+        children = [NSMutableArray array];
+        [browser setDelegate:self];
+        running = false;
+    }
+    return self;
+}
+-(void)fetch{
+    if (running) return;
+    [self browse];
+    [mdnsBrowser progress:true];
+    running = true;
+}
+-(void)browse{
+}
+-(void)halt{
+    for(masterBrowser *browse in children)
+        [browse halt];
     [browser stop];
 }
--(void) netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindDomain:(NSString *)domainString moreComing:(BOOL)moreComing{
-    if(children[domainString] != nil) return;
-    [children setObject:[domainBrowser create:aNetServiceBrowser withDomain:domainString] forKey:domainString];
-    [(NSBrowser *)[[NSApp delegate] browser] reloadColumn:0];
+-(NSDictionary *)txtrecord{
+    return @{};
 }
--(void) netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveDomain:(NSString *)domainString moreComing:(BOOL)moreComing{
-    [(domainBrowser *)children[domainString] terminate];
-    [children removeObjectForKey:domainString];
+-(bool)isLeaf{
+    return false;
 }
--(void) netServiceBrowserWillSearch:(NSNetServiceBrowser *)aNetServiceBrowser{
-    [[[NSApp delegate] progress] startAnimation:self];
+-(void)remove:(NSString *)name{
+    NSUInteger i = [[children valueForKey:@"name"] indexOfObject:name];
+    [[children objectAtIndex:i] halt];
+    [children removeObjectAtIndex:i];
 }
--(void) netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)aNetServiceBrowser{
-    [[[NSApp delegate] progress] stopAnimation:self];
+-(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didNotSearch:(NSDictionary *)errorDict{
+    ModalNSNetError(errorDict);
 }
--(void) netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didNotSearch:(NSDictionary *)errorDict{
-    [NSAlert alertWithError:[NSError errorWithDomain:errorDict[NSNetServicesErrorDomain] code:[errorDict[NSNetServicesErrorCode] longValue] userInfo:errorDict]];
+
+@end
+
+@implementation masterBrowser
+
++(masterBrowser *)create{
+    masterBrowser *temp = [masterBrowser new];
+    [temp fetch];
+    return temp;
+}
+-(void)browse{
+    [self.browser searchForBrowsableDomains];
+}
+
+#pragma mark Methods
+-(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindDomain:(NSString *)domainString moreComing:(BOOL)moreComing{
+    if (!moreComing) [mdnsBrowser progress:false];
+    muteWithNotice(self, children, [self.children addObject:[domainBrowser create:domainString]])
+}
+-(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveDomain:(NSString *)domainString moreComing:(BOOL)moreComing{
+    muteWithNotice(self, children, [self remove:domainString])
 }
 @end
 @implementation domainBrowser
-+(domainBrowser *)create:(NSNetServiceBrowser *)browser withDomain:(NSString *)domain{
+@synthesize domain;
++(domainBrowser *)create:domain{
     domainBrowser *temp = [domainBrowser new];
-    temp.children = [NSMutableDictionary dictionary];
-    temp.browser = [NSNetServiceBrowser new];
-    [temp.browser setDelegate:temp];
-    [temp.browser searchForServicesOfType:@"_services._dns-sd._udp" inDomain:domain];
+    temp.domain = domain;
     return temp;
 }
--(void) netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindService:(NSNetService *)aNetService moreComing:(BOOL)moreComing{
-    if(self.children[aNetService.name]!=nil) return;
-    [self.children setObject:[typeBrowser create:aNetServiceBrowser withService:aNetService] forKey:[aNetService.name substringFromIndex:1]];
-    [[[NSApp delegate] progress] stopAnimation:self];
+-(NSString *)name{
+    return domain;
 }
--(void) netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveService:(NSNetService *)aNetService moreComing:(BOOL)moreComing{
-    [(typeBrowser *)self.children[aNetService.name] terminate];
-    [self.children removeObjectForKey:aNetService.name];
+-(void)browse {
+    [self.browser searchForServicesOfType:@"_services._dns-sd._udp" inDomain:domain];
+}
+-(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindService:(NSNetService *)aNetService moreComing:(BOOL)moreComing{
+    if (!moreComing) [mdnsBrowser progress:false];
+    muteWithNotice(self, children, [self.children addObject:[typeBrowser create:aNetService]])
+}
+-(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveService:(NSNetService *)aNetService moreComing:(BOOL)moreComing{
+    if (!moreComing) [mdnsBrowser progress:false];
+    muteWithNotice(self, children, [self remove:aNetService.name])
 }
 @end
+
 @implementation typeBrowser
+
+@synthesize type;
 @synthesize service;
-+(typeBrowser *)create:(NSNetServiceBrowser *)browser withService:(NSNetService *)service{
+
++(typeBrowser *)create:(NSNetService *)service{
     NSMutableArray *parts = [NSMutableArray arrayWithArray:[[NSString stringWithFormat:@"%@%@%@",service.name,service.domain,service.type] componentsSeparatedByString:@"."]];
     [parts insertObject:@"" atIndex:2];
-    NSString *type = [[parts subarrayWithRange:(NSRange){0,3}] componentsJoinedByString:@"."];
-    NSString *domain = [[parts subarrayWithRange:(NSRange){3,[parts count]-3}] componentsJoinedByString:@"."];
     typeBrowser *temp = [typeBrowser new];
-    temp.children = [NSMutableDictionary dictionary];
-    temp.browser = [NSNetServiceBrowser new];
+    temp.type = [[parts subarrayWithRange:NSMakeRange(0, 3)] componentsJoinedByString:@"."];
+    temp.domain = [[parts subarrayWithRange:NSMakeRange(3, parts.count-3)] componentsJoinedByString:@"."];
     temp.service = service;
-    [temp.browser setDelegate:temp];
-    [temp.browser searchForServicesOfType:type inDomain:domain];
     return temp;
 }
--(void) netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindService:(NSNetService *)aNetService moreComing:(BOOL)moreComing{
-    if(self.children[aNetService.name]!=nil) return;
-    [self.children setObject:[serviceBrowser create:aNetServiceBrowser withService:aNetService] forKey:aNetService.name];
+-(NSDictionary *)txtrecord{
+    return @{@"_port":[NSString stringWithFormat:@"%ld",service.port], @"_addresses":[SocksToStrings(service.addresses) componentsJoinedByString:@", "], @"_domain":service.domain, @"_name":service.name, @"_type":service.type};
 }
--(void) netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveService:(NSNetService *)aNetService moreComing:(BOOL)moreComing{
-    [(serviceBrowser *)self.children[aNetService.name] terminate];
-    [self.children removeObjectForKey:aNetService.name];
+-(NSString *)name{
+    return ([NSUserDefaults.standardUserDefaults boolForKey:@"resolveNames"])?[ServiceNames resolve:[self.service.name substringFromIndex:1]]:[self.service.name substringFromIndex:1];
+}
+-(void)browse{
+    [self.browser searchForServicesOfType:type inDomain:self.domain];
+}
+-(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindService:(NSNetService *)aNetService moreComing:(BOOL)moreComing{
+    if (!moreComing) [mdnsBrowser progress:false];
+    muteWithNotice(self, children, [self.children addObject:[serviceBrowser create:aNetService]])
 }
 @end
+
 @implementation serviceBrowser
 @synthesize resolved;
-+(serviceBrowser *)create:(NSNetServiceBrowser *)browser withService:(NSNetService *)service{
+
++(serviceBrowser *)create:(NSNetService *)service{
     serviceBrowser *temp = [serviceBrowser new];
-    temp.children = [NSMutableDictionary dictionary];
     temp.service = service;
+    temp.resolved = false;
     [temp.service setDelegate:temp];
-    [temp.service resolveWithTimeout:10.0];
     return temp;
 }
--(void) netServiceDidResolveAddress:(NSNetService *)sender{
-    self.resolved = true;
+-(NSString *)name{
+    return self.service.name;
 }
--(void) netService:(NSNetService *)sender didNotResolve:(NSDictionary *)errorDict{
-    self.resolved = false;
-    [NSAlert alertWithError:[NSError errorWithDomain:errorDict[NSNetServicesErrorDomain] code:[errorDict[NSNetServicesErrorCode] longValue] userInfo:errorDict]];
+-(void)halt{
+    [super halt];
+    if (resolved) [self.service stopMonitoring];
 }
--(void) terminate{
-    [self.service stop];
+-(bool)isLeaf{
+    return true;
+}
+-(void)browse{
+    [self.service resolveWithTimeout:10.0];
+}
+-(NSDictionary *)txtrecord{
+    if (!resolved) return @{};
+    NSMutableDictionary *txt = [NSMutableDictionary dictionaryWithDictionary:[super txtrecord]];
+    [txt setObject:self.service.hostName forKey:@"_hostName"];
+    NSDictionary *txts = [NSNetService dictionaryFromTXTRecordData:self.service.TXTRecordData];
+    for(NSString *key in txts)
+        [txt setObject:NSStringForData([txts objectForKey:key], NSASCIIStringEncoding) forKey:key];
+    return [NSDictionary dictionaryWithDictionary:txt];
+}
+-(void)netServiceDidResolveAddress:(NSNetService *)sender{
+    [mdnsBrowser progress:false];
+    assignWithNotice(self, resolved, true)
+    muteWithNotice(self, txtrecord, )
+    [self.service startMonitoring];
+}
+-(void)netService:(NSNetService *)sender didNotResolve:(NSDictionary *)errorDict{
+    [mdnsBrowser progress:false];
+    ModalNSNetError(errorDict);
+}
+-(void)netService:(NSNetService *)sender didUpdateTXTRecordData:(NSData *)data{
+    muteWithNotice(self, txtrecord, )
 }
 @end
