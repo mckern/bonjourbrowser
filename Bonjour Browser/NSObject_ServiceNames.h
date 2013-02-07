@@ -52,10 +52,10 @@ NSArray* SocksToStrings(NSArray *addresses){
 static NSDictionary *services = nil;
 static NSCharacterSet *separator = nil;
 +(NSString *)parse:(NSString *)descriptor{
-    return [descriptor componentsSeparatedByCharactersInSet:separator][1];
+    return [[descriptor componentsSeparatedByCharactersInSet:separator] objectAtIndex:1];
 }
 +(NSString *)resolve:(NSString *)service{
-    NSString *resolved = services[service];
+    NSString *resolved = [services objectForKey:service];
     return (resolved==nil)?service:resolved;
 }
 +(void) initialize {
