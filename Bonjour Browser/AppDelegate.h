@@ -6,11 +6,6 @@
 //  Licensed under GPLv3, full text at http://www.gnu.org/licenses/gpl-3.0.txt
 //
 
-#import <Cocoa/Cocoa.h>
-#include <arpa/inet.h>
-#include <net/if_dl.h>
-#include <sys/socket.h>
-
 #import "masterBrowser.h"
 
 //static NSArray *titles = @[@[@"Domains",@"Types",@"Instances"],@[@"Devices",@"Types",@"Instances"]];

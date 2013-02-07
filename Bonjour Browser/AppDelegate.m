@@ -75,37 +75,5 @@
     }
     return node;
 }
--(NSString *)sockArrayToString:(NSArray *)addresses{
-    NSMutableArray *temp = [NSMutableArray array];
-    for(NSData *addr in addresses) {
-        NSString *str = [NSString string];
-        switch (((struct sockaddr *)[addr bytes])->sa_family) {
-            case AF_INET:{
-                struct sockaddr_in *sock = (struct sockaddr_in *)[addr bytes];
-                char ad[INET_ADDRSTRLEN];
-                inet_ntop(AF_INET, &sock->sin_addr, ad, INET_ADDRSTRLEN);
-                str = [NSString stringWithFormat:@"%s:%u",ad,ntohs(sock->sin_port)];
-                break;
-            }
-            case AF_INET6:{
-                struct sockaddr_in6 *sock = (struct sockaddr_in6 *)[addr bytes];
-                char ad[INET6_ADDRSTRLEN];
-                inet_ntop(AF_INET6, &sock->sin6_addr, ad, INET6_ADDRSTRLEN);
-                str = [NSString stringWithFormat:@"%s@%u",ad,ntohs(sock->sin6_port)];
-                break;
-            }
-            case AF_LINK:{
-                struct sockaddr_dl *sock = (struct sockaddr_dl *)[addr bytes];
-                char *name = NULL;
-                char *ll = NULL;
-                strlcpy(name, sock->sdl_data, sock->sdl_nlen);
-                strlcpy(ll, sock->sdl_data+sock->sdl_nlen, sock->sdl_alen);
-                str = [NSString stringWithFormat:@"%s %s",name,ll];
-                break;
-            }
-        }
-        [temp addObject:str];
-    }
-    return [temp componentsJoinedByString:@", "];
 }
 @end
