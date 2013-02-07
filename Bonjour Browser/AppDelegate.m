@@ -14,14 +14,14 @@
 @synthesize progress;
 @synthesize browser;
 @synthesize master;
-@synthesize defaults;
 @synthesize txtrecords;
 
 #pragma mark Application Delegate
--(void) awakeFromNib{
-    defaults = [NSUserDefaults standardUserDefaults];
-    [defaults registerDefaults:@{@"tabIndex":@0,@"resolveNames":@NO}];
-    master = [masterBrowser create];
+-(void)awakeFromNib{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults registerDefaults:@{@"tabIndex": @0, @"resolveNames": @(false)}];
+    [defaults addObserver:self forKeyPath:@"tabIndex" options:0 context:nil];
+    [defaults addObserver:self forKeyPath:@"resolveNames" options:0 context:nil];
 }
 -(void) applicationDidFinishLaunching:(NSNotification *)aNotification{
     // Insert code here to initialize your application
@@ -43,6 +43,12 @@
 }
 -(NSInteger) browser:(NSBrowser *)sender numberOfRowsInColumn:(NSInteger)column{
     return [[[self traverse:column] children] count];
+#pragma mark Observations
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"tabIndex"])
+        [browser reloadColumn:0];
+    else if ([keyPath isEqualToString:@"resolveNames"])
+        [browser reloadColumn:1];
 }
 
 #pragma mark GUI
@@ -57,14 +63,6 @@
     for(NSString *key in txts) [records setObject:[NSString stringWithUTF8String:[(NSData *)txts[key] bytes]] forKey:key];
     self.txtrecords = [NSDictionary dictionaryWithDictionary:records];
 }
--(IBAction) resolve:(id)sender{
-    [browser reloadColumn:1];
-}
--(IBAction) tab:(id)sender{
-    [browser reloadColumn:0];
-    //TODO: column titles
-}
-
 #pragma mark Convenience Functions
 -(masterBrowser *) traverse:(NSInteger)column{
     masterBrowser *node = master;

@@ -15,11 +15,8 @@
 @property (assign) IBOutlet NSProgressIndicator *progress;
 @property (assign) IBOutlet NSBrowser *browser;
 
-@property NSUserDefaults *defaults;
 @property masterBrowser *master;
 @property NSDictionary *txtrecords;
 
 -(IBAction)browserChoose:(id)sender;
--(IBAction)resolve:(id)sender;
--(IBAction)tab:(id)sender;
 @end
