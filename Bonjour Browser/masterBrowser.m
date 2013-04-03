@@ -50,7 +50,7 @@
 -(void)remove:(NSString *)name{
     NSUInteger i = [[children valueForKey:@"name"] indexOfObject:name];
     [[children objectAtIndex:i] halt];
-    [children removeObjectAtIndex:i];
+    muteWithNotice(self, children, [children removeObjectAtIndex:i])
 }
 -(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didNotSearch:(NSDictionary *)errorDict{
     ModalNSNetError(errorDict);
@@ -75,7 +75,7 @@
     muteWithNotice(self, children, [self.children addObject:[domainBrowser create:domainString]])
 }
 -(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveDomain:(NSString *)domainString moreComing:(BOOL)moreComing{
-    muteWithNotice(self, children, [self remove:domainString])
+    [self remove:domainString];
 }
 @end
 @implementation domainBrowser
@@ -97,7 +97,7 @@
 }
 -(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveService:(NSNetService *)aNetService moreComing:(BOOL)moreComing{
     if (!moreComing) [mdnsBrowser progress:false];
-    muteWithNotice(self, children, [self remove:aNetService.name])
+    [self remove:aNetService.name];
 }
 @end
 
@@ -164,7 +164,7 @@
 }
 -(void)netServiceDidResolveAddress:(NSNetService *)sender{
     [mdnsBrowser progress:false];
-    assignWithNotice(self, resolved, true)
+    self.resolved = true;
     muteWithNotice(self, txtrecord, )
     [self.service startMonitoring];
 }

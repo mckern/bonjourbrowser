@@ -22,7 +22,7 @@
 }
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification{
     // Insert code here to initialize your application
-    assignWithNotice(self, master, [masterBrowser create])
+    self.master = [masterBrowser create];
 }
 -(BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender{
     return true;
