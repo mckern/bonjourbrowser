@@ -41,7 +41,7 @@ NSArray* SocksToStrings(NSArray *addresses){
         }
         [temp addObject:str];
     }
-    return [NSArray arrayWithArray:temp];
+    return [temp copy];
 }
 
 @interface ServiceNames : NSObject

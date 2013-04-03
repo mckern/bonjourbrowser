@@ -10,9 +10,9 @@
 @property NSMutableArray *children;
 @property NSNetServiceBrowser *browser;
 @property bool running;
-@property (nonatomic) NSDictionary *txtrecord;
-@property (nonatomic) NSString *name;
-@property (nonatomic) bool isLeaf;
+@property (readonly) NSDictionary *txtrecord;
+@property (readonly) NSString *name;
+@property (readonly) bool isLeaf;
 -(void)halt;
 -(void)fetch;
 @end

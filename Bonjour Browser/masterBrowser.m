@@ -107,7 +107,7 @@
 @synthesize service;
 
 +(typeBrowser *)create:(NSNetService *)service{
-    NSMutableArray *parts = [NSMutableArray arrayWithArray:[[NSString stringWithFormat:@"%@%@%@",service.name,service.domain,service.type] componentsSeparatedByString:@"."]];
+    NSMutableArray *parts = [[[NSString stringWithFormat:@"%@%@%@",service.name,service.domain,service.type] componentsSeparatedByString:@"."] mutableCopy];
     [parts insertObject:@"" atIndex:2];
     typeBrowser *temp = [typeBrowser new];
     temp.type = [[parts subarrayWithRange:NSMakeRange(0, 3)] componentsJoinedByString:@"."];
@@ -154,13 +154,13 @@
     [self.service resolveWithTimeout:10.0];
 }
 -(NSDictionary *)txtrecord{
-    if (!resolved) return @{};
-    NSMutableDictionary *txt = [NSMutableDictionary dictionaryWithDictionary:[super txtrecord]];
+    if (!resolved) return nil;
+    NSMutableDictionary *txt = [[super txtrecord] mutableCopy];
     [txt setObject:self.service.hostName forKey:@"_hostName"];
     NSDictionary *txts = [NSNetService dictionaryFromTXTRecordData:self.service.TXTRecordData];
     for(NSString *key in txts)
         [txt setObject:NSStringForData([txts objectForKey:key], NSASCIIStringEncoding) forKey:key];
-    return [NSDictionary dictionaryWithDictionary:txt];
+    return [txt copy];
 }
 -(void)netServiceDidResolveAddress:(NSNetService *)sender{
     [mdnsBrowser progress:false];
