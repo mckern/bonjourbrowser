@@ -10,7 +10,6 @@
 
 @implementation AppDelegate
 
-@synthesize progress;
 @synthesize browser;
 @synthesize master;
 

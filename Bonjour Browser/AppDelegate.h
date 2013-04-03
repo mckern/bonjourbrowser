@@ -9,10 +9,10 @@
 #import "masterBrowser.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
-@property (assign) IBOutlet NSProgressIndicator *progress;
 @property (assign) IBOutlet NSBrowser *browser;
 
 @property masterBrowser *master;
+@property bool animates;
 
 -(IBAction)choose:(id)sender;
 @end

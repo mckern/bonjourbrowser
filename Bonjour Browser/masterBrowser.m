@@ -7,7 +7,6 @@
 //
 
 #import "masterBrowser.h"
-#import "AppDelegate.h"
 #import "NSObject_ServiceNames.h"
 
 @implementation mdnsBrowser
@@ -15,11 +14,8 @@
 @synthesize running;
 @synthesize browser;
 
-+(void)progress:(bool)running{
-    if (running)
-        [[[NSApp delegate] progress] startAnimation:self];
-    else
-        [[[NSApp delegate] progress] stopAnimation:self];
++(void)progress:(bool)animates{
+    [[NSApp delegate] setAnimates:animates];
 }
 
 -(id)init{
