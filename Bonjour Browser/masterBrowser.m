@@ -37,12 +37,12 @@
 -(void)browse{
 }
 -(void)halt{
-    for(masterBrowser *browse in children)
+    for(mdnsBrowser *browse in children)
         [browse halt];
     [browser stop];
 }
 -(NSDictionary *)txtrecord{
-    return @{};
+    return nil;
 }
 -(bool)isLeaf{
     return false;
