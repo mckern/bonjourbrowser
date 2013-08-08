@@ -7,7 +7,7 @@
 //
 
 @interface mdnsBrowser : NSObject <NSNetServiceBrowserDelegate>
-@property NSMutableArray *children;
+@property (nonatomic) NSMutableArray *children;
 @property NSNetServiceBrowser *browser;
 @property bool running;
 @property (readonly) NSDictionary *txtrecord;

@@ -36,7 +36,7 @@
     if ([keyPath isEqualToString:@"tabIndex"])
         [browser reloadColumn:0];
     else if ([keyPath isEqualToString:@"resolveNames"])
-        [browser reloadColumn:1];
+        muteWithNotice([[[browser selectedCellInColumn:0] representedObject] representedObject], children,);
 }
 
 #pragma mark GUI

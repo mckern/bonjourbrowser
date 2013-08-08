@@ -55,6 +55,12 @@
 -(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didNotSearch:(NSDictionary *)errorDict{
     ModalNSNetError(errorDict);
 }
+-(NSMutableArray *)children {
+    [children sortUsingComparator:^NSComparisonResult(id obj1, id obj2){
+        return [[obj1 name] localizedStandardCompare:[obj2 name]];
+    }];
+    return children;
+}
 
 @end
 
