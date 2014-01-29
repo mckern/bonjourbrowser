@@ -23,6 +23,8 @@
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification{
     // Insert code here to initialize your application
     self.master = [masterBrowser create];
+    NSView *view = [[browser.superview.subviews.lastObject subviews] objectAtIndex:0];
+    [(NSTableView *)view.subviews.lastObject setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"key" ascending:true selector:@selector(localizedStandardCompare:)],[NSSortDescriptor sortDescriptorWithKey:@"value" ascending:true selector:@selector(localizedStandardCompare:)]]];
 }
 -(BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender{
     return true;
