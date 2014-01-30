@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B018FBCE1899CA8100EC0FF5 /* ServiceNames.m in Sources */ = {isa = PBXBuildFile; fileRef = B018FBCD1899CA8100EC0FF5 /* ServiceNames.m */; };
 		B0BAF3C115E9A6EE00345CEB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0BAF3C015E9A6EE00345CEB /* Cocoa.framework */; };
 		B0BAF3CD15E9A6EE00345CEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BAF3CC15E9A6EE00345CEB /* main.m */; };
 		B0BAF3D415E9A6EE00345CEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BAF3D315E9A6EE00345CEB /* AppDelegate.m */; };
@@ -16,7 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B0409D5F15E9CCF20045844E /* NSObject_ServiceNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObject_ServiceNames.h; sourceTree = "<group>"; };
+		B018FBCC1899CA8100EC0FF5 /* ServiceNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceNames.h; sourceTree = "<group>"; };
+		B018FBCD1899CA8100EC0FF5 /* ServiceNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceNames.m; sourceTree = "<group>"; };
 		B0BAF3BC15E9A6EE00345CEB /* Bonjour Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bonjour Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0BAF3C015E9A6EE00345CEB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B0BAF3C315E9A6EE00345CEB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -89,7 +91,8 @@
 				B0C58B5A15F84DC60015D4C9 /* masterBrowser.h */,
 				B0C58B5B15F84DC60015D4C9 /* masterBrowser.m */,
 				B0BAF3D515E9A6EE00345CEB /* MainMenu.xib */,
-				B0409D5F15E9CCF20045844E /* NSObject_ServiceNames.h */,
+				B018FBCC1899CA8100EC0FF5 /* ServiceNames.h */,
+				B018FBCD1899CA8100EC0FF5 /* ServiceNames.m */,
 				B0BAF3C715E9A6EE00345CEB /* Supporting Files */,
 			);
 			path = "Bonjour Browser";
@@ -171,6 +174,7 @@
 			files = (
 				B0BAF3CD15E9A6EE00345CEB /* main.m in Sources */,
 				B0BAF3D415E9A6EE00345CEB /* AppDelegate.m in Sources */,
+				B018FBCE1899CA8100EC0FF5 /* ServiceNames.m in Sources */,
 				B0C58B5C15F84DC60015D4C9 /* masterBrowser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

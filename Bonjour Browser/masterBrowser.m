@@ -7,7 +7,7 @@
 //
 
 #import "masterBrowser.h"
-#import "NSObject_ServiceNames.h"
+#import "ServiceNames.h"
 
 @implementation mdnsBrowser
 @synthesize children;
