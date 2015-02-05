@@ -6,13 +6,10 @@
 //  Licensed under GPLv3, full text at http://www.gnu.org/licenses/gpl-3.0.txt
 //
 
-#import "masterBrowser.h"
+@class masterBrowser;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
-@property (assign) IBOutlet NSBrowser *browser;
 
-@property masterBrowser *master;
-@property bool animates;
+@property (readonly) masterBrowser *master;
 
--(IBAction)choose:(id)sender;
 @end

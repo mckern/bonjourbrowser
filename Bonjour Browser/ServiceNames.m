@@ -14,54 +14,55 @@
 static NSDictionary *services;
 static NSCharacterSet *separator;
 
-NSArray* SocksToStrings(NSArray *addresses){
+NSArray* SocksToStrings(NSArray *addresses) {
     NSMutableArray *temp = [NSMutableArray array];
-    for(NSData *addr in addresses) {
-        NSString *str = [NSString string];
+    for (NSData *addr in addresses) {
         switch (((struct sockaddr *)[addr bytes])->sa_family) {
             case AF_INET:{
                 struct sockaddr_in *sock = (struct sockaddr_in *)[addr bytes];
                 char ad[INET_ADDRSTRLEN];
                 inet_ntop(AF_INET, &sock->sin_addr, ad, INET_ADDRSTRLEN);
-                str = [NSString stringWithFormat:@"%s:%u",ad,ntohs(sock->sin_port)];
+                [temp addObject:[NSString stringWithFormat:@"%s:%u",ad,ntohs(sock->sin_port)]];
                 break;
             }
             case AF_INET6:{
                 struct sockaddr_in6 *sock = (struct sockaddr_in6 *)[addr bytes];
                 char ad[INET6_ADDRSTRLEN];
                 inet_ntop(AF_INET6, &sock->sin6_addr, ad, INET6_ADDRSTRLEN);
-                str = [NSString stringWithFormat:@"%s@%u",ad,ntohs(sock->sin6_port)];
+                [temp addObject:[NSString stringWithFormat:@"%s@%u",ad,ntohs(sock->sin6_port)]];
                 break;
             }
             case AF_LINK:{
                 struct sockaddr_dl *sock = (struct sockaddr_dl *)[addr bytes];
-                char *name = NULL;
-                char *ll = NULL;
+                char *name = NULL, *ll = NULL;
                 strlcpy(name, sock->sdl_data, sock->sdl_nlen);
-                strlcpy(ll, sock->sdl_data+sock->sdl_nlen, sock->sdl_alen);
-                str = [NSString stringWithFormat:@"%s %s",name,ll];
+                strlcpy(ll, sock->sdl_data + sock->sdl_nlen, sock->sdl_alen);
+                [temp addObject:[NSString stringWithFormat:@"%s %s",name,ll]];
                 break;
             }
         }
-        [temp addObject:str];
     }
     return [temp copy];
 }
 
 @implementation ServiceNames
-+(NSString *)parse:(NSString *)descriptor{
+
++(NSString *)parse:(NSString *)descriptor {
     return [[descriptor componentsSeparatedByCharactersInSet:separator] objectAtIndex:1];
 }
-+(NSString *)resolve:(NSString *)service{
+
++(NSString *)resolve:(NSString *)service {
     NSString *resolved = [services objectForKey:service];
-    return (resolved==nil)?service:resolved;
+    return resolved ?: service;
 }
+
 +(void) initialize {
     separator = [NSCharacterSet characterSetWithCharactersInString:@"_."];
     /* curl -s http://www.dns-sd.org/ServiceTypes.html | grep '^<b>'  | sed -e 's/ protocol$//' -e 's/ Protocol$//' -e 's:":\\":g' -e 's;^<b>\(.*\)</b> *\(.*\)$;@"\1":@"\2",;w dnssd.txt' */
     services = @{
                  @"1password":@"1Password Password Manager data sharing and synchronization",
                  @"a-d-sync":@"Altos Design Synchronization",
+                 @"aaplcache":@"Apple Caching Service",
                  @"abi-instrument":@"Applied Biosystems Universal Instrument Framework",
                  @"accessdata-f2d":@"FTK2 Database Discovery Service",
                  @"accessdata-f2w":@"FTK2 Backend Processing Agent Service",
@@ -117,10 +118,13 @@ NSArray* SocksToStrings(NSArray *addresses){
                  @"astnotify":@"Asterisk Caller-ID Notification Service",
                  @"astralite":@"Astralite",
                  @"async":@"address-o-sync",
+                 @"atc":@"iTunes Air Traffic Control",
                  @"atlassianapp":@"Atlassian Discovery Service",
                  @"av":@"Allen Vanguard Hardware Service",
                  @"avatars":@"Libravatar federated avatar hosting service.",
                  @"avatars-sec":@"Libravatar federated avatar hosting service.",
+                 @"awcln":@"?",
+                 @"awsrv":@"?",
                  @"axis-video":@"Axis Video Cameras",
                  @"auth":@"Authentication Service",
                  @"b3d-convince":@"3M Unitek Digital Orthodontic System",
@@ -228,6 +232,7 @@ NSArray* SocksToStrings(NSArray *addresses){
                  @"eppc":@"Remote AppleEvents",
                  @"erp-scale":@"Pocket Programs ERP-Scale Server Discovery",
                  @"esp":@"Extensis Server",
+                 @"espdsn":@"?",
                  @"eucalyptus":@"Eucalyptus Discovery",
                  @"eventserver":@"Now Up-to-Date",
                  @"evp":@"EvP - Generic EVENT",
@@ -241,7 +246,7 @@ NSArray* SocksToStrings(NSArray *addresses){
                  @"facespan":@"FaceSpan",
                  @"fairview":@"Fairview Device Identification",
                  @"faxstfx":@"FAXstf",
-                 @"feed-sharing":@"NetNewsWire 2.0",
+                 @"feed-sharing":@"NetNewsWire 2",
                  @"firetask":@"Firetask task sharing and synchronization",
                  @"fish":@"Fish",
                  @"fix":@"Financial Information Exchange",
@@ -300,6 +305,7 @@ NSArray* SocksToStrings(NSArray *addresses){
                  @"hs-off":@"Hobbyist Software Off Discovery",
                  @"htsp":@"Home Tv Streaming",
                  @"http":@"Hypertext Transfer Protocol",
+                 @"http-alt":@"Alternate Hypertext Transfer Protocol",
                  @"https":@"Secure Hypertext Transfer Protocol",
                  @"htvncconf":@"HomeTouch Vnc Configuration",
                  @"hydra":@"SubEthaEdit",
@@ -458,6 +464,7 @@ NSArray* SocksToStrings(NSArray *addresses){
                  @"ntp":@"Network Time",
                  @"ntx":@"Tenasys",
                  @"nut":@"Network UPS Tools",
+                 @"nvstream":@"NVidia Shield Streaming",
                  @"obf":@"Observations Framework",
                  @"objective":@"Objective Instance Server",
                  @"oca":@"Object Control Architecture",
@@ -750,6 +757,7 @@ NSArray* SocksToStrings(NSArray *addresses){
                  @"x-plane9":@"x-plane9",
                  @"xcodedistcc":@"Xcode Distributed Compiler",
                  @"xcsp":@"Xcode Service",
+                 @"xcs2p":@"Xcode Service 2",
                  @"xgate-rmi":@"xGate Remote Management Interface",
                  @"xgrid":@"Xgrid",
                  @"xmiserver":@"XMI Systems home terminal local connection",

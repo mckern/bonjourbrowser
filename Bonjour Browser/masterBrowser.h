@@ -7,32 +7,39 @@
 //
 
 @interface mdnsBrowser : NSObject <NSNetServiceBrowserDelegate>
-@property (nonatomic) NSMutableArray *children;
-@property NSNetServiceBrowser *browser;
-@property bool running;
+
+@property (readonly) NSArray *children;
+@property (readonly) NSNetServiceBrowser *browser;
+@property (readonly, getter = isRunning) bool running;
 @property (readonly) NSDictionary *txtrecord;
 @property (readonly) NSString *name;
-@property (readonly) bool isLeaf;
+@property (readonly, getter = isLeaf) bool leaf;
+@property (readonly, getter = isProcessing) bool processing;
+
 -(void)halt;
 -(void)fetch;
+
 @end
 
 @interface masterBrowser : mdnsBrowser
-+(masterBrowser *)create;
+
 @end
 
 @interface domainBrowser : masterBrowser
-@property NSString *domain;
-+(domainBrowser *)create:(NSString *)domain;
+
+@property (readonly) NSString *domain;
+
 @end
 
 @interface typeBrowser : domainBrowser
-@property NSString *type;
-@property NSNetService *service;
-+(typeBrowser *)create:(NSNetService *)service;
+
+@property (readonly) NSString *type;
+@property (readonly) NSNetService *service;
+
 @end
 
 @interface serviceBrowser : typeBrowser <NSNetServiceDelegate>
-@property bool resolved;
-+(serviceBrowser *)create:(NSNetService *)service;
+
+@property (readonly, getter = didResolve) bool resolved;
+
 @end

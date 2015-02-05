@@ -7,42 +7,45 @@
 //
 
 #import "AppDelegate.h"
+#import "masterBrowser.h"
 
-@implementation AppDelegate
-
-@synthesize browser;
-@synthesize master;
+@implementation AppDelegate {
+    __unsafe_unretained IBOutlet NSBrowser *_browser;
+}
 
 #pragma mark Application Delegate
--(void)awakeFromNib{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults registerDefaults:@{@"tabIndex": @0, @"resolveNames": @(false)}];
+-(void)awakeFromNib {
+    NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
+    [defaults registerDefaults:@{@"tabIndex": @0, @"resolveNames": @NO}];
     [defaults addObserver:self forKeyPath:@"tabIndex" options:0 context:nil];
     [defaults addObserver:self forKeyPath:@"resolveNames" options:0 context:nil];
 }
--(void)applicationDidFinishLaunching:(NSNotification *)aNotification{
+
+-(void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    self.master = [masterBrowser create];
-    NSView *view = [[browser.superview.subviews.lastObject subviews] objectAtIndex:0];
-    [(NSTableView *)view.subviews.lastObject setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"key" ascending:true selector:@selector(localizedStandardCompare:)],[NSSortDescriptor sortDescriptorWithKey:@"value" ascending:true selector:@selector(localizedStandardCompare:)]]];
+    muteWithNotice(self, master, [_master = [masterBrowser new] fetch]);
+    NSView *view = [[_browser.superview.subviews.lastObject subviews] firstObject];
+    [(NSTableView *)view.subviews.lastObject setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"key" ascending:true selector:@selector(localizedStandardCompare:)], [NSSortDescriptor sortDescriptorWithKey:@"value" ascending:true selector:@selector(localizedStandardCompare:)]]];
 }
--(BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender{
+
+-(BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
     return true;
 }
--(void)applicationWillTerminate:(NSNotification *)notification{
-    [master halt];
+
+-(void)applicationWillTerminate:(NSNotification *)notification {
+    [_master halt];
 }
 
 #pragma mark Observations
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"tabIndex"])
-        [browser reloadColumn:0];
+        [_browser reloadColumn:0];
     else if ([keyPath isEqualToString:@"resolveNames"])
-        muteWithNotice([[[browser selectedCellInColumn:0] representedObject] representedObject], children,);
+        muteWithNotice([[[_browser selectedCellInColumn:0] representedObject] representedObject], children,);
 }
 
 #pragma mark GUI
--(IBAction)copy:(id)sender{
+-(IBAction)copy:(id)sender {
     NSResponder *obj = [[NSApp keyWindow] firstResponder];
     if ([obj isKindOfClass:NSTableView.class]) {
         if (![(NSTableView *)obj numberOfSelectedRows]) return;
@@ -70,7 +73,9 @@
         [NSPasteboard.generalPasteboard writeObjects:@[[rows componentsJoinedByString:@"\n"]]];
     }
 }
--(IBAction)choose:(id)sender{
+
+-(IBAction)choose:(id)sender {
     [[[[sender selectedCell] representedObject] representedObject] fetch];
 }
+
 @end
