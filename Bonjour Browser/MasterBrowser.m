@@ -1,15 +1,15 @@
 //
-//  masterBrowser.m
+//  MasterBrowser.m
 //  Bonjour Browser
 //
 //  Created by PHPdev32 on 9/5/12.
 //  Licensed under GPLv3, full text at http://www.gnu.org/licenses/gpl-3.0.txt
 //
 
-#import "masterBrowser.h"
+#import "MasterBrowser.h"
 #import "ServiceNames.h"
 
-@implementation mdnsBrowser {
+@implementation MDNSBrowser {
     @private
     NSMutableArray *_children;
 }
@@ -53,14 +53,14 @@
     _processing = processing;
 }
 
--(void)add:(mdnsBrowser *)browser {
+-(void)add:(MDNSBrowser *)browser {
     [browser fetch];
     muteWithNotice(self, children, [_children addObject:browser]);
 }
 
 -(void)remove:(NSString *)name {
     NSUInteger i = 0;
-    for (mdnsBrowser *browser in _children)
+    for (MDNSBrowser *browser in _children)
         if (++i && [browser.name isEqualToString:name]) {
             [browser halt];
             muteWithNotice(self, children, [_children removeObjectAtIndex:i - 1]);
@@ -96,13 +96,13 @@
 
 @end
 
-@interface domainBrowser ()
+@interface DomainBrowser ()
 
 -(instancetype)initWithDomain:(NSString *)domain;
 
 @end
 
-@implementation masterBrowser
+@implementation MasterBrowser
 
 -(void)browse {
     [self.browser searchForBrowsableDomains];
@@ -111,7 +111,7 @@
 #pragma mark Methods
 -(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindDomain:(NSString *)domainString moreComing:(BOOL)moreComing {
     self.processing = moreComing;
-    [self add:[[domainBrowser alloc] initWithDomain:domainString]];
+    [self add:[[DomainBrowser alloc] initWithDomain:domainString]];
 }
 
 -(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveDomain:(NSString *)domainString moreComing:(BOOL)moreComing {
@@ -120,13 +120,13 @@
 }
 @end
 
-@interface typeBrowser ()
+@interface TypeBrowser ()
 
 -(instancetype)initWithService:(NSNetService *)service;
 
 @end
 
-@implementation domainBrowser
+@implementation DomainBrowser
 
 -(instancetype)initWithDomain:(NSString *)domain {
     self = [super init];
@@ -145,7 +145,7 @@
 
 -(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindService:(NSNetService *)aNetService moreComing:(BOOL)moreComing {
     self.processing = moreComing;
-    [self add:[[typeBrowser alloc] initWithService:aNetService]];
+    [self add:[[TypeBrowser alloc] initWithService:aNetService]];
 }
 
 -(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveService:(NSNetService *)aNetService moreComing:(BOOL)moreComing {
@@ -155,7 +155,7 @@
 
 @end
 
-@implementation typeBrowser
+@implementation TypeBrowser
 
 -(instancetype)initWithService:(NSNetService *)service {
     NSMutableArray *parts = [[[NSString stringWithFormat:@"%@%@%@",service.name,service.domain,service.type] componentsSeparatedByString:@"."] mutableCopy];
@@ -184,12 +184,12 @@
 
 -(void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didFindService:(NSNetService *)aNetService moreComing:(BOOL)moreComing {
     self.processing = moreComing;
-    [self add:[[serviceBrowser alloc] initWithService:aNetService]];
+    [self add:[[ServiceBrowser alloc] initWithService:aNetService]];
 }
 
 @end
 
-@implementation serviceBrowser
+@implementation ServiceBrowser
 
 -(instancetype)initWithService:(NSNetService *)service {
     self = [super initWithService:service];

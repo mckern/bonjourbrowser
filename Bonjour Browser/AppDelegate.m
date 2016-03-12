@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "masterBrowser.h"
+#import "MasterBrowser.h"
 
 @implementation AppDelegate {
     __unsafe_unretained IBOutlet NSBrowser *_browser;
@@ -23,7 +23,7 @@
 
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    muteWithNotice(self, master, [_master = [masterBrowser new] fetch]);
+    muteWithNotice(self, master, [_master = [MasterBrowser new] fetch]);
     NSView *view = [[_browser.superview.subviews.lastObject subviews] firstObject];
     [(NSTableView *)view.subviews.lastObject setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"key" ascending:true selector:@selector(localizedStandardCompare:)], [NSSortDescriptor sortDescriptorWithKey:@"value" ascending:true selector:@selector(localizedStandardCompare:)]]];
 }

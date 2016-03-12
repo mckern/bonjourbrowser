@@ -6,10 +6,10 @@
 //  Licensed under GPLv3, full text at http://www.gnu.org/licenses/gpl-3.0.txt
 //
 
-@class masterBrowser;
+@class MasterBrowser;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (readonly) masterBrowser *master;
+@property (readonly) MasterBrowser *master;
 
 @end

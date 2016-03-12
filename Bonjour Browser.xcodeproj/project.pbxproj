@@ -12,7 +12,7 @@
 		B0BAF3CD15E9A6EE00345CEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BAF3CC15E9A6EE00345CEB /* main.m */; };
 		B0BAF3D415E9A6EE00345CEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BAF3D315E9A6EE00345CEB /* AppDelegate.m */; };
 		B0BAF3D715E9A6EE00345CEB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0BAF3D515E9A6EE00345CEB /* MainMenu.xib */; };
-		B0C58B5C15F84DC60015D4C9 /* masterBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C58B5B15F84DC60015D4C9 /* masterBrowser.m */; };
+		B0C58B5C15F84DC60015D4C9 /* MasterBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = B0C58B5B15F84DC60015D4C9 /* MasterBrowser.m */; };
 		B0E49CB816C37A2100DD7263 /* Bonjour.icns in Resources */ = {isa = PBXBuildFile; fileRef = B0E49CB716C37A2000DD7263 /* Bonjour.icns */; };
 /* End PBXBuildFile section */
 
@@ -30,8 +30,8 @@
 		B0BAF3D215E9A6EE00345CEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B0BAF3D315E9A6EE00345CEB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B0BAF3D615E9A6EE00345CEB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		B0C58B5A15F84DC60015D4C9 /* masterBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = masterBrowser.h; sourceTree = "<group>"; };
-		B0C58B5B15F84DC60015D4C9 /* masterBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = masterBrowser.m; sourceTree = "<group>"; };
+		B0C58B5A15F84DC60015D4C9 /* MasterBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterBrowser.h; sourceTree = "<group>"; };
+		B0C58B5B15F84DC60015D4C9 /* MasterBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterBrowser.m; sourceTree = "<group>"; };
 		B0E49CB716C37A2000DD7263 /* Bonjour.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Bonjour.icns; path = ../../../../../System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/Bonjour.icns; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -88,8 +88,8 @@
 			children = (
 				B0BAF3D215E9A6EE00345CEB /* AppDelegate.h */,
 				B0BAF3D315E9A6EE00345CEB /* AppDelegate.m */,
-				B0C58B5A15F84DC60015D4C9 /* masterBrowser.h */,
-				B0C58B5B15F84DC60015D4C9 /* masterBrowser.m */,
+				B0C58B5A15F84DC60015D4C9 /* MasterBrowser.h */,
+				B0C58B5B15F84DC60015D4C9 /* MasterBrowser.m */,
 				B0BAF3D515E9A6EE00345CEB /* MainMenu.xib */,
 				B018FBCC1899CA8100EC0FF5 /* ServiceNames.h */,
 				B018FBCD1899CA8100EC0FF5 /* ServiceNames.m */,
@@ -175,7 +175,7 @@
 				B0BAF3CD15E9A6EE00345CEB /* main.m in Sources */,
 				B0BAF3D415E9A6EE00345CEB /* AppDelegate.m in Sources */,
 				B018FBCE1899CA8100EC0FF5 /* ServiceNames.m in Sources */,
-				B0C58B5C15F84DC60015D4C9 /* masterBrowser.m in Sources */,
+				B0C58B5C15F84DC60015D4C9 /* MasterBrowser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
