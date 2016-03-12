@@ -429,7 +429,7 @@
                             <rect key="frame" x="1" y="17" width="437" height="117"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" headerView="815" id="813">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" headerView="815" id="813">
                                     <rect key="frame" x="0.0" y="0.0" width="437" height="117"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -502,7 +502,7 @@
                     <constraint firstItem="674" firstAttribute="baseline" secondItem="596" secondAttribute="baseline" id="676"/>
                     <constraint firstAttribute="trailing" secondItem="674" secondAttribute="trailing" constant="20" symbolic="YES" id="678"/>
                     <constraint firstAttribute="bottom" secondItem="812" secondAttribute="bottom" constant="20" symbolic="YES" id="823"/>
-                    <constraint firstItem="812" firstAttribute="top" secondItem="372" secondAttribute="top" constant="205" id="824"/>
+                    <constraint firstItem="812" firstAttribute="height" secondItem="606" secondAttribute="height" id="dI5-jU-KR3"/>
                     <constraint firstAttribute="trailing" secondItem="812" secondAttribute="trailing" constant="20" symbolic="YES" id="826"/>
                     <constraint firstItem="812" firstAttribute="centerX" secondItem="606" secondAttribute="centerX" id="827"/>
                     <constraint firstItem="606" firstAttribute="top" secondItem="596" secondAttribute="bottom" constant="8" symbolic="YES" id="837"/>
