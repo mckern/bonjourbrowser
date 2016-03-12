@@ -54,7 +54,6 @@
 }
 
 -(void)add:(MDNSBrowser *)browser {
-    [browser fetch];
     muteWithNotice(self, children, [_children addObject:browser]);
 }
 
@@ -213,12 +212,12 @@
 }
 
 -(void)browse {
-    [self.service resolveWithTimeout:10.0];
+    [self.service resolveWithTimeout:60];
 }
 
 -(NSDictionary *)txtrecord {
     if (!_resolved)
-        return nil;
+        return [super txtrecord];
     NSNetService *s = self.service;
     NSMutableDictionary *txt = [[super txtrecord] mutableCopy];
     [txt setObject:s.hostName forKey:@"_hostName"];
