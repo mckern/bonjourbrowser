@@ -157,18 +157,22 @@
 @implementation TypeBrowser
 
 -(instancetype)initWithService:(NSNetService *)service {
-    NSMutableArray *parts = [[[NSString stringWithFormat:@"%@%@%@",service.name,service.domain,service.type] componentsSeparatedByString:@"."] mutableCopy];
-    [parts insertObject:@"" atIndex:2];
-    self = [super initWithDomain:[[parts subarrayWithRange:NSMakeRange(3, parts.count - 3)] componentsJoinedByString:@"."]];
+    NSString *name = [NSString stringWithFormat:@"%@.%@%@",service.name,service.type,[service.domain isEqualToString:@"."] ? @"" : service.domain];
+    self = [super initWithDomain:[name substringFromIndex:name.length - 6]];
     if (self) {
-        _type = [[parts subarrayWithRange:NSMakeRange(0, 3)] componentsJoinedByString:@"."];
+        NSUInteger l = service.name.length;
+        _type = self.class == TypeBrowser.class
+        ? [name substringToIndex:name.length - 6]
+        : [name substringWithRange:NSMakeRange(l + 1, name.length - 8 - l)];
         _service = service;
     }
     return self;
 }
 
 -(NSDictionary *)txtrecord {
-    return @{@"_port":[NSString stringWithFormat:@"%ld",_service.port], @"_addresses":[SocksToStrings(_service.addresses) componentsJoinedByString:@", "], @"_domain":_service.domain, @"_name":_service.name, @"_type":_service.type};
+    return self.class == TypeBrowser.class
+    ? @{@"_domain":self.domain, @"_type":_type}
+    : @{@"_port":[NSString stringWithFormat:@"%ld",_service.port], @"_addresses":[SocksToStrings(_service.addresses) componentsJoinedByString:@", "], @"_domain":self.domain, @"_name":_service.name, @"_type":_type};
 }
 
 -(NSString *)name {
