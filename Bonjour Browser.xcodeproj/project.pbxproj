@@ -135,7 +135,7 @@
 		B0BAF3B315E9A6ED00345CEB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Sourceforge;
 			};
 			buildConfigurationList = B0BAF3B615E9A6EE00345CEB /* Build configuration list for PBXProject "Bonjour Browser" */;
@@ -203,6 +203,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_MARKETING_VERSION = 1.5;
 				CURRENT_PROJECT_VERSION = 25;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -252,6 +253,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bonjour Browser/Bonjour Browser-Prefix.pch";
 				INFOPLIST_FILE = "Bonjour Browser/Bonjour Browser-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.bonjourbrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -264,6 +266,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bonjour Browser/Bonjour Browser-Prefix.pch";
 				INFOPLIST_FILE = "Bonjour Browser/Bonjour Browser-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.bonjourbrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

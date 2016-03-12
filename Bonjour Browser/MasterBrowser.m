@@ -241,7 +241,7 @@
 
 -(void)netService:(NSNetService *)sender didNotResolve:(NSDictionary *)errorDict {
     self.processing = false;
-    [self netServiceBrowser:nil didNotSearch:errorDict];
+    [self netServiceBrowser:self.browser didNotSearch:errorDict];
 }
 
 -(void)netService:(NSNetService *)sender didUpdateTXTRecordData:(NSData *)data {
