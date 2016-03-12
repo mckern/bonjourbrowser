@@ -17,27 +17,20 @@ static NSCharacterSet *separator;
 NSArray* SocksToStrings(NSArray *addresses) {
     NSMutableArray *temp = [NSMutableArray array];
     for (NSData *addr in addresses) {
-        switch (((struct sockaddr *)[addr bytes])->sa_family) {
+        struct sockaddr *s = (struct sockaddr *)addr.bytes;
+        switch (s->sa_family) {
             case AF_INET:{
-                struct sockaddr_in *sock = (struct sockaddr_in *)[addr bytes];
+                struct sockaddr_in *sock = (struct sockaddr_in *)s;
                 char ad[INET_ADDRSTRLEN];
-                inet_ntop(AF_INET, &sock->sin_addr, ad, INET_ADDRSTRLEN);
+                inet_ntop(sock->sin_family, &sock->sin_addr, ad, sizeof(ad));
                 [temp addObject:[NSString stringWithFormat:@"%s:%u",ad,ntohs(sock->sin_port)]];
                 break;
             }
             case AF_INET6:{
-                struct sockaddr_in6 *sock = (struct sockaddr_in6 *)[addr bytes];
+                struct sockaddr_in6 *sock = (struct sockaddr_in6 *)s;
                 char ad[INET6_ADDRSTRLEN];
-                inet_ntop(AF_INET6, &sock->sin6_addr, ad, INET6_ADDRSTRLEN);
-                [temp addObject:[NSString stringWithFormat:@"%s@%u",ad,ntohs(sock->sin6_port)]];
-                break;
-            }
-            case AF_LINK:{
-                struct sockaddr_dl *sock = (struct sockaddr_dl *)[addr bytes];
-                char *name = NULL, *ll = NULL;
-                strlcpy(name, sock->sdl_data, sock->sdl_nlen);
-                strlcpy(ll, sock->sdl_data + sock->sdl_nlen, sock->sdl_alen);
-                [temp addObject:[NSString stringWithFormat:@"%s %s",name,ll]];
+                inet_ntop(sock->sin6_family, &sock->sin6_addr, ad, sizeof(ad));
+                [temp addObject:[NSString stringWithFormat:@"[%s]:%u",ad,ntohs(sock->sin6_port)]];
                 break;
             }
         }

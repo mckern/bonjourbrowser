@@ -225,7 +225,7 @@
     NSDictionary *txts = [NSNetService dictionaryFromTXTRecordData:s.TXTRecordData];
     for (NSString *key in txts) {
         NSData *data = [txts objectForKey:key];
-        [txt setObject:[[NSString alloc] initWithBytes:data.bytes length:data.length encoding:NSASCIIStringEncoding] forKey:key];
+        [txt setObject:[[NSString alloc] initWithBytes:data.bytes length:data.length encoding:NSUTF8StringEncoding] forKey:key];
     }
     return [txt copy];
 }
