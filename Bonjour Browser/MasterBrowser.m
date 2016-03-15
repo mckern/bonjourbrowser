@@ -154,17 +154,20 @@
 
 @end
 
-@implementation TypeBrowser
+@implementation TypeBrowser {
+    @private
+    NSString *_subtype;
+}
 
 -(instancetype)initWithService:(NSNetService *)service {
-    NSString *name = [NSString stringWithFormat:@"%@.%@%@",service.name,service.type,[service.domain isEqualToString:@"."] ? @"" : service.domain];
-    self = [super initWithDomain:[name substringFromIndex:name.length - 6]];
+    NSArray *labels = [[NSString stringWithFormat:@"%@.%@%@",service.name,service.type,[service.domain isEqualToString:@"."] ? @"" : service.domain] componentsSeparatedByString:@"."];
+    NSUInteger i = labels.count;
+    self = [super initWithDomain:[[labels subarrayWithRange:NSMakeRange(i - 2, 2)] componentsJoinedByString:@"."]];
     if (self) {
-        NSUInteger l = service.name.length;
-        _type = self.class == TypeBrowser.class
-        ? [name substringToIndex:name.length - 6]
-        : [name substringWithRange:NSMakeRange(l + 1, name.length - 8 - l)];
+        _type = [[[labels subarrayWithRange:NSMakeRange(i - 4, 2)] componentsJoinedByString:@"."] stringByAppendingString:@"."];
         _service = service;
+        if (i > 4 && self.class == TypeBrowser.class)
+            _subtype = [[[labels subarrayWithRange:NSMakeRange(0, i - 4)] componentsJoinedByString:@"."] stringByReplacingOccurrencesOfString:@"_" withString:@""];
     }
     return self;
 }
@@ -176,9 +179,11 @@
 }
 
 -(NSString *)name {
-    return [NSUserDefaults.standardUserDefaults boolForKey:@"resolveNames"]
-    ? [ServiceNames resolve:[self.service.name substringFromIndex:1]]
-    : [self.service.name substringFromIndex:1];
+    NSString *type = _type.stringByDeletingPathExtension.stringByDeletingPathExtension;
+    type = [NSUserDefaults.standardUserDefaults boolForKey:@"resolveNames"]
+    ? [ServiceNames resolve:[type substringFromIndex:1]]
+    : [type substringFromIndex:1];
+    return _subtype ? [NSString stringWithFormat:@"%@ (%@)", type, _subtype] : type;
 }
 
 -(void)browse {
