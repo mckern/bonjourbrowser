@@ -175,7 +175,7 @@
 }
 
 -(NSString *)name {
-    NSString *type = _type.stringByDeletingPathExtension.stringByDeletingPathExtension;
+    NSString *type = [[_type componentsSeparatedByString:@"."] firstObject];
     type = [NSUserDefaults.standardUserDefaults boolForKey:@"resolveNames"]
     ? [ServiceNames resolve:[type substringFromIndex:1]]
     : [type substringFromIndex:1];
