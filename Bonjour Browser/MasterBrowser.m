@@ -80,11 +80,7 @@
         case NSNetServicesInvalidError: string = @"Invalid"; break;
         case NSNetServicesTimeoutError: string = @"Timeout"; break;
     }
-    NSAlert *a = [NSAlert new];
-    a.alertStyle = NSCriticalAlertStyle;
-    a.informativeText = @"NSNetServices Error";
-    a.messageText = [NSString stringWithFormat:@"Domain \"%@\" error (%ld): %@", [errorDict objectForKey:NSNetServicesErrorDomain], code, string ?: @""];
-    [a runModal];
+    [NSApp performSelectorOnMainThread:@selector(presentError:) withObject:[NSError errorWithDomain:[errorDict objectForKey:NSNetServicesErrorDomain] code:code userInfo:@{NSLocalizedDescriptionKey:string ?: @""}] waitUntilDone:false];
 }
 
 -(NSArray *)children {
