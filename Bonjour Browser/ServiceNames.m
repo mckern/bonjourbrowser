@@ -288,6 +288,7 @@ NSArray* SocksToStrings(NSArray *addresses) {
                  @"home-sharing":@"iTunes Home Sharing",
                  @"homeauto":@"iDo Technology Home Automation",
                  @"homeconnect":@"Home Connect",
+                 @"homekit":@"HomeKit",
                  @"honeywell-vid":@"Honeywell Video Systems",
                  @"hotwayd":@"Hotwayd",
                  @"howdy":@"Howdy messaging and notification",
